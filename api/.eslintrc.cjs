@@ -7,8 +7,13 @@ module.exports = {
     env: {
         node: true,
     },
-    plugins: [],
+    plugins: ['import'],
     rules: {
         'no-undef': 'error',
+        'import/no-unresolved': ['error', { commonjs: true, amd: true }],
+        'import/named': 'error',
+        'import/default': 'error',
+        'import/namespace': 'error',
+        'import/export': 'error',
     },
 }

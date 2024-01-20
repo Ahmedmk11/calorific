@@ -3,24 +3,32 @@
     "version": "1.0.0",
     "description": "Server for handling api requests for Calorific",
     "main": "app.js",
+    "type": "module",
     "scripts": {
-        "start": "nodemon app.js",
+        "start": "nodemon app.js --port 8080",
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint ."
     },
     "author": "Ahmed Mahmoud",
     "license": "ISC",
     "dependencies": {
+        "bcrypt": "^5.1.1",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "dotenv": "^16.3.2",
         "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.1.0",
+        "nodemailer": "^6.9.8",
         "nodemon": "^3.0.3",
+        "notp": "^2.0.3",
         "path": "^0.12.7",
-        "url": "^0.11.3"
+        "thirty-two": "^1.0.2",
+        "url": "^0.11.3",
+        "validator": "^13.11.0"
     },
     "devDependencies": {
-        "eslint": "^8.56.0"
+        "eslint": "^8.56.0",
+        "eslint-plugin-import": "^2.29.1"
     }
 }

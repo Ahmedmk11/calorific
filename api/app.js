@@ -9,6 +9,9 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import cookieParser from 'cookie-parser'
 
+import authRoutes from './routes/authRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+
 import { connectToDatabase } from './database.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -42,6 +45,9 @@ app.use((req, res, next) => {
 // --------------------------------------------------
 // Routes
 // --------------------------------------------------
+
+app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
 
 // --------------------------------------------------
 // Server

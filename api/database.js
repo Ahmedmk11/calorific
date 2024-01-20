@@ -11,7 +11,7 @@ dotenv.config({ path: path.join(currentDir, '.env') })
 
 async function connectToDatabase() {
     try {
-        const uri = process.env.CONN_STRING
+        const uri = process.env.MONGO_URI
         await mongoose.connect(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
