@@ -54,18 +54,22 @@ async function login(req, res) {
 }
 
 async function getCurrUser(req, res) {
-    const token = req.cookies.token
+    try {
+        const token = req.cookies.token
 
-    if (token) {
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET)
-            res.status(200).json(decoded)
-        } catch (error) {
-            console.error('Error decoding JWT: ', error)
-            res.status(500).json({ error: 'Failed to decode JWT' })
+        if (token) {
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET)
+                res.status(200).json(decoded)
+            } catch (error) {
+                console.error('Error decoding JWT: ', error)
+                res.status(500).json({ error: 'Failed to decode JWT' })
+            }
+        } else {
+            res.status(200).json({ error: 'No JWT token found in cookies' })
         }
-    } else {
-        res.status(400).json({ error: 'No JWT token found in cookies' })
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
     }
 }
 

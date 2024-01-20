@@ -84,6 +84,114 @@ const userModel = new mongoose.Schema(
                 },
             ],
         },
+        food_list: {
+            type: Array,
+            default: [],
+        },
+        daily_preferences: {
+            type: Object,
+            default: {
+                calories: 0,
+                carbs: 0,
+                proteins: 0,
+                fats: 0,
+            },
+        },
+        weight_target: {
+            type: Number,
+            default: 0,
+        },
+        weight_current: {
+            type: Number,
+            default: 0,
+        },
+        height: {
+            type: Number,
+            default: 0,
+        },
+        health_history: {
+            type: [
+                {
+                    date: {
+                        type: Date,
+                        required: true,
+                    },
+                    weight: {
+                        type: Number,
+                        required: true,
+                    },
+                    body_fats: {
+                        type: Number,
+                        required: true,
+                    },
+                    muscle_mass: {
+                        type: Number,
+                        required: true,
+                    },
+                    bmi: {
+                        type: Number,
+                        required: true,
+                    },
+                    bmr: {
+                        type: Number,
+                        required: true,
+                    },
+                    pbf: {
+                        type: Number,
+                        required: true,
+                    },
+                    smm: {
+                        type: Number,
+                        required: true,
+                    },
+                },
+            ],
+            default: [],
+        },
+        activity_level: {
+            type: String,
+            enum: [
+                'bmr',
+                'sedentary',
+                'light',
+                'moderate',
+                'active',
+                'very_active',
+                'extra_active',
+            ],
+            default: 'bmr',
+        },
+        diet_history: {
+            type: [
+                {
+                    date: {
+                        type: Date,
+                        required: true,
+                    },
+                    calories: {
+                        type: Number,
+                        required: true,
+                    },
+                    proteins: {
+                        type: Number,
+                        required: true,
+                    },
+                    fats: {
+                        type: Number,
+                        required: true,
+                    },
+                    carbs: {
+                        type: Number,
+                        required: true,
+                    },
+                    target: {
+                        type: Boolean,
+                        required: true,
+                    },
+                },
+            ],
+            default: [],
+        },
     },
     { timestamps: true },
     {

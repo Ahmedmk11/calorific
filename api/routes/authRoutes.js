@@ -7,7 +7,7 @@ import {
     changePassword,
     generateAndSendOTP,
     validateOTP,
-} from '../controllers/authenticationController.js'
+} from '../controllers/authController.js'
 
 const router = express.Router()
 
