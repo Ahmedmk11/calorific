@@ -1,11 +1,7 @@
-import { useState } from 'react'
+import React from 'react'
 
-function Home() {
-    return (
-        <>
-            <div>hello</div>
-        </>
-    )
+const Home: React.FC = () => {
+    return <div id='home-page'></div>
 }
 
 export default Home

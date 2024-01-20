@@ -1,0 +1,23 @@
+#home-page {
+    background-color: #eaeaea;
+    margin: auto;
+    margin-top: -200px;
+    z-index: 1000;
+    width: 80%;
+    height: 100vh;
+    border-radius: 20px 20px 0px 0px;
+    -webkit-border-radius: 20px 20px 0px 0px;
+    -moz-border-radius: 20px 20px 0px 0px;
+    -ms-border-radius: 20px 20px 0px 0px;
+    -o-border-radius: 20px 20px 0px 0px;
+}
+
+#notfound-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgba($color: #000000, $alpha: 0.8);
+}

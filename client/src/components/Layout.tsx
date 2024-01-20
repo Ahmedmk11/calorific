@@ -1,4 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
+import axiosApi from '../utils/axiosApi'
+
 import Header from './Header'
 
 interface LayoutProps {
@@ -6,9 +10,28 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+    const [isHeader, setIsHeader] = useState<boolean | null>(null)
+    const location = useLocation()
+
+    useEffect(() => {
+        axiosApi
+            .get('/auth/get-curr-user')
+            .then((res) => {
+                if (res.data._id) {
+                    setIsHeader(true)
+                } else {
+                    setIsHeader(false)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+                setIsHeader(false)
+            })
+    }, [location])
+
     return (
         <>
-            <Header />
+            {isHeader ? <Header /> : null}
             {children}
         </>
     )

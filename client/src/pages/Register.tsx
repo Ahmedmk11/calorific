@@ -1,12 +1,11 @@
 import React from 'react'
-import SignUpForm from '../components/SignUpForm'
-import Header from '../components/Header'
+import RegisterForm from '../components/RegisterForm'
 
 const Register: React.FC = () => {
     return (
         <div id='register-page'>
             <div id='register-content'>
-                <SignUpForm />
+                <RegisterForm />
             </div>
         </div>
     )

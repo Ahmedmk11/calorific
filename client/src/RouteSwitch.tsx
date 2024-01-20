@@ -5,8 +5,9 @@ import { LoginGuard, UserGuard } from './AuthGuard'
 import axiosApi from './utils/axiosApi'
 
 import Home from './pages/Home'
-// import Login from './pages/Login'
+import Login from './pages/Login'
 import Register from './pages/Register'
+import NotFound from './pages/NotFound'
 
 const RouteSwitch = () => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
@@ -30,7 +31,7 @@ const RouteSwitch = () => {
 
     return (
         <Routes>
-            {/* <Route
+            <Route
                 path='/'
                 element={
                     <LoginGuard isAuthenticated={isAuthenticated}>
@@ -45,10 +46,10 @@ const RouteSwitch = () => {
                         <Login />
                     </LoginGuard>
                 }
-            /> */}
+            />
             <Route path='/register' element={<Register />} />
             {/* <Route path='/forgot-password' element={<ForgotPassword />} /> */}
-            {/* <Route path='*' element={<NotFound />} /> */}
+            <Route path='*' element={<NotFound />} />
 
             <Route
                 path='/home'
