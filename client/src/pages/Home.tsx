@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function App() {
+function Home() {
     return (
         <>
             <div>hello</div>
@@ -8,4 +8,4 @@ function App() {
     )
 }
 
-export default App
+export default Home
