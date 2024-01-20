@@ -1,0 +1,26 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "description": "Server for handling api requests for Calorific",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint ."
+    },
+    "author": "Ahmed Mahmoud",
+    "license": "ISC",
+    "dependencies": {
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.2",
+        "express": "^4.18.2",
+        "mongoose": "^8.1.0",
+        "nodemon": "^3.0.3",
+        "path": "^0.12.7",
+        "url": "^0.11.3"
+    },
+    "devDependencies": {
+        "eslint": "^8.56.0"
+    }
+}
