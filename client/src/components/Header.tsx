@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import Button from '@mui/material/Button'
+import Badge from '@mui/material/Badge'
 
 const Header: React.FC = () => {
+    const [numberNotifications, setNumberNotifications] = useState(9)
+
+    const handleBadgeCount = (count: number) => {
+        setNumberNotifications(count)
+    }
+
     return (
         <div id='header-component'>
             <div id='header-upper'>
                 <h1>Calorific</h1>
                 <div id='header-upper-actions-buttons'>
-                    <NotificationsNoneIcon fontSize='large' />
+                    <Badge
+                        color='secondary'
+                        badgeContent={numberNotifications}
+                        invisible={numberNotifications == 0}>
+                        <NotificationsNoneIcon fontSize='large' />
+                    </Badge>
                     <AccountCircleIcon fontSize='large' />
                 </div>
             </div>

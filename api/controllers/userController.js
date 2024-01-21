@@ -10,15 +10,8 @@ dotenv.config({ path: path.join(__dirname, '.env') })
 
 async function createUser(req, res) {
     try {
-        const {
-            username,
-            name,
-            email,
-            password,
-            birthdate,
-            gender,
-            phoneNumber,
-        } = req.body
+        const { username, name, email, password, birthdate, sex, phoneNumber } =
+            req.body
 
         const newUser = new UserModel({
             username,
@@ -26,7 +19,7 @@ async function createUser(req, res) {
             email,
             password,
             birthdate,
-            gender,
+            sex,
             phoneNumber,
         })
 

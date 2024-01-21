@@ -22,30 +22,40 @@ dotenv.config({ path: path.join(currentDir, '.env') })
 
 async function login(req, res) {
     try {
-        const username = req.body.username
+        const emailOrUsername = req.body.emailOrUsername
         const password = req.body.password
         const remember = req.body.remember
+        const em = emailOrUsername.includes('@')
 
-        const user = await UserModel.findOne({ username: username })
+        const user = em
+            ? await UserModel.findOne({ email: emailOrUsername })
+            : await UserModel.findOne({ username: emailOrUsername })
+
+        const lbl = em ? 'email' : 'username'
+
         if (!user) {
             return res
                 .status(404)
-                .json({ message: 'Invalid username or password' })
+                .json({ message: `Invalid ${lbl} or password` })
         }
         const isMatch = await user.comparePassword(password, user.password)
         if (!isMatch) {
             return res
                 .status(404)
-                .json({ message: 'Invalid username or password' })
+                .json({ message: `Invalid ${lbl} or password` })
         }
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: remember ? '30d' : '2h',
         })
 
         res.cookie('token', token, {
+            secure: true,
+            sameSite: 'None',
             httpOnly: true,
             maxAge: remember ? 30 * 24 * 60 * 60 * 1000 : 2 * 60 * 60 * 1000,
         })
+
+        console.log('Token', token)
 
         return res.status(200).json({ token, data: { user } })
     } catch (error) {

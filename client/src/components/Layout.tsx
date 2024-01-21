@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         axiosApi
             .get('/auth/get-curr-user')
             .then((res) => {
-                if (res.data._id) {
+                if (res.data.userId) {
                     setIsHeader(true)
                 } else {
                     setIsHeader(false)

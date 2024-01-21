@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Katibeh';
+    src: url('../assets/fonts/Katibeh-Regular.ttf') format('woff2');
+}
+
 #header-component {
     background-color: #580ee3;
     height: 45%;
@@ -8,8 +13,9 @@
     flex-direction: column;
     #header-upper {
         h1 {
-            font-size: 1.8rem;
+            font-size: 2.8rem;
             font-weight: 700;
+            font-family: 'Katibeh';
         }
         display: flex;
         flex-direction: row;

@@ -17,7 +17,8 @@ const RouteSwitch = () => {
         axiosApi
             .get('/auth/get-curr-user')
             .then((res) => {
-                if (res.data._id) {
+                console.log(res.data)
+                if (res.data.userId) {
                     setIsAuthenticated(true)
                 } else {
                     setIsAuthenticated(false)

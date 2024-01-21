@@ -39,6 +39,7 @@ app.use(cors(corsOptions))
 app.use(cookieParser())
 
 app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Credentials', true)
     next()
 })
 

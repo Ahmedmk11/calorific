@@ -67,9 +67,10 @@ const userModel = new mongoose.Schema(
             type: Date,
             required: [true, 'Please enter your birthdate.'],
         },
-        gender: {
+        sex: {
             type: String,
-            required: [true, 'Please select your gender.'],
+            enum: ['male', 'female'],
+            required: [true, 'Please select your sex.'],
         },
         phoneNumber: {
             type: String,
