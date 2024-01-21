@@ -1,10 +1,7 @@
-@font-face {
-    font-family: 'Katibeh';
-    src: url('../assets/fonts/Katibeh-Regular.ttf') format('woff2');
-}
+@import 'variables';
 
 #header-component {
-    background-color: #580ee3;
+    background-color: $primary-purple-3;
     height: 45%;
     width: 100%;
     left: 0;
