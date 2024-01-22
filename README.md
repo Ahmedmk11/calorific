@@ -1,9 +1,5 @@
 # Calorific
 
-Calorific is a calorie counting tracker app built using the MERN stack.
-
-## Description
-
 Calorific allows users to track their daily calorie intake and monitor their progress towards their health and fitness goals. Users can log their meals and snacks, view their calorie consumption history, and set personalized calorie targets.
 
 ## Features
@@ -17,7 +13,8 @@ Calorific allows users to track their daily calorie intake and monitor their pro
 ## Technologies Used
 
 - MongoDB: Database for storing user information and calorie data.
-- Express.js: Backend framework for handling API requests.
+- Mongoose: Object modeling library for MongoDB.
+- NestJS: Backend framework for handling API requests.
 - React: Frontend library for building the user interface.
 - Node.js: JavaScript runtime environment for running the server.
 - Redux: State management library for managing global state.

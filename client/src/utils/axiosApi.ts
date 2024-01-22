@@ -1,9 +1,10 @@
 import axios from 'axios'
 
+export const baseURL = 'http://[::1]:8080/'
+
 const axiosApi = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: baseURL,
     withCredentials: true,
 })
-export const baseURL = 'http://localhost:8080/api/'
 export const baseURLclient = 'http://localhost:5176/'
 export default axiosApi
