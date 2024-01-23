@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { User } from '../../models/user.schema'
-import jwt from 'jsonwebtoken'
+import * as jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import notp from 'notp'
 import base32 from 'thirty-two'
@@ -30,14 +30,12 @@ export class AuthService {
             const em = emailOrUsername.includes('@')
 
             const user = em
-                ? await this.userModel.findOne({
-                      where: { email: emailOrUsername },
-                  })
-                : await this.userModel.findOne({
-                      where: { username: emailOrUsername },
-                  })
+                ? await this.userModel.findOne({ email: emailOrUsername })
+                : await this.userModel.findOne({ username: emailOrUsername })
 
             const lbl = em ? 'email' : 'username'
+
+            console.log('user', user)
 
             if (!user) {
                 throw new Error(`Invalid ${lbl} or password`)

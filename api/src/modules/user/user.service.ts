@@ -51,9 +51,7 @@ export class UserService {
         username: string
     ): Promise<{ message: number }> {
         try {
-            const isTaken = await this.userModel.findOne({
-                where: { username },
-            })
+            const isTaken = await this.userModel.findOne({ username })
             return isTaken ? { message: 200 } : { message: 202 }
         } catch (error) {
             return { message: 500 }
@@ -62,9 +60,7 @@ export class UserService {
 
     async checkEmailAvailability(email: string): Promise<{ message: number }> {
         try {
-            const isTaken = await this.userModel.findOne({
-                where: { email },
-            })
+            const isTaken = await this.userModel.findOne({ email })
             return isTaken ? { message: 200 } : { message: 202 }
         } catch (error) {
             return { message: 500 }
@@ -74,7 +70,7 @@ export class UserService {
     async checkPhoneAvailability(phone: string): Promise<{ message: number }> {
         try {
             const isTaken = await this.userModel.findOne({
-                where: { phoneNumber: phone },
+                phoneNumber: phone,
             })
             return isTaken ? { message: 200 } : { message: 202 }
         } catch (error) {

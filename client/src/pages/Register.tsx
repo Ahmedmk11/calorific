@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
@@ -13,7 +13,13 @@ import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import axiosApi from '../utils/axiosApi'
 
+import { InputAdornment, IconButton } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+
 function Register() {
+    const [showPassword, setShowPassword] = useState(false)
+    const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
@@ -59,6 +65,16 @@ function Register() {
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                autoComplete='name'
+                                name='name'
+                                required
+                                fullWidth
+                                id='name'
+                                label='Name'
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
                                 autoComplete='username'
                                 name='username'
                                 required
@@ -66,16 +82,6 @@ function Register() {
                                 id='username'
                                 label='Username'
                                 autoFocus
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete='name'
-                                name='name'
-                                required
-                                fullWidth
-                                id='name'
-                                label='Name'
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -94,9 +100,67 @@ function Register() {
                                 fullWidth
                                 name='password'
                                 label='Password'
-                                type='password'
+                                type={showPassword ? 'text' : 'password'}
                                 id='password'
                                 autoComplete='new-password'
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            <IconButton
+                                                onClick={() =>
+                                                    setShowPassword(
+                                                        !showPassword
+                                                    )
+                                                }
+                                                edge='end'>
+                                                {showPassword ? (
+                                                    <VisibilityOff />
+                                                ) : (
+                                                    <Visibility />
+                                                )}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                required
+                                fullWidth
+                                name='confirmPassword'
+                                label='Confirm Password'
+                                type={showPasswordConfirm ? 'text' : 'password'}
+                                id='confirmPassword'
+                                autoComplete='off'
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            <IconButton
+                                                onClick={() =>
+                                                    setShowPasswordConfirm(
+                                                        !showPasswordConfirm
+                                                    )
+                                                }
+                                                edge='end'>
+                                                {showPasswordConfirm ? (
+                                                    <VisibilityOff />
+                                                ) : (
+                                                    <Visibility />
+                                                )}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                required
+                                fullWidth
+                                name='phoneNumber'
+                                label='Phone Number'
+                                id='phoneNumber'
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -117,6 +181,7 @@ function Register() {
                                 <InputLabel id='sex-label'>Sex *</InputLabel>
                                 <Select
                                     required
+                                    defaultValue={'male'}
                                     labelId='sex-label'
                                     id='sex'
                                     name='sex'
@@ -125,15 +190,6 @@ function Register() {
                                     <MenuItem value='female'>Female</MenuItem>
                                 </Select>
                             </FormControl>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                name='phoneNumber'
-                                label='Phone Number'
-                                id='phoneNumber'
-                            />
                         </Grid>
                     </Grid>
                     <Button
@@ -145,7 +201,7 @@ function Register() {
                     </Button>
                     <Grid container justifyContent='flex-end'>
                         <Grid item>
-                            <Link href='#' variant='body2'>
+                            <Link href='/login' variant='body2'>
                                 Already have an account? Sign in
                             </Link>
                         </Grid>

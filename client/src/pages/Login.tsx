@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
@@ -11,9 +12,12 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import axiosApi from '../utils/axiosApi'
 import { useNavigate } from 'react-router-dom'
+import { InputAdornment, IconButton } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 function Login() {
     const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -74,11 +78,28 @@ function Login() {
                         fullWidth
                         name='password'
                         label='Password'
-                        type='password'
+                        type={showPassword ? 'text' : 'password'}
                         id='password'
                         autoComplete='current-password'
                         InputLabelProps={{
                             required: false,
+                        }}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position='end'>
+                                    <IconButton
+                                        onClick={() =>
+                                            setShowPassword(!showPassword)
+                                        }
+                                        edge='end'>
+                                        {showPassword ? (
+                                            <VisibilityOff />
+                                        ) : (
+                                            <Visibility />
+                                        )}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
                         }}
                     />
                     <FormControlLabel
@@ -104,7 +125,7 @@ function Login() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href='#' variant='body2'>
+                            <Link href='/register' variant='body2'>
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>
