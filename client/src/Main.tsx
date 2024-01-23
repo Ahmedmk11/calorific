@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
 import RouteSwitch from './RouteSwitch'
-
 import Layout from './components/Layout'
+import store from './reduxStore'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
@@ -28,11 +29,13 @@ const customTheme = createTheme({
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <BrowserRouter>
-            <Layout>
-                <ThemeProvider theme={customTheme}>
-                    <RouteSwitch />
-                </ThemeProvider>
-            </Layout>
+            <Provider store={store}>
+                <Layout>
+                    <ThemeProvider theme={customTheme}>
+                        <RouteSwitch />
+                    </ThemeProvider>
+                </Layout>
+            </Provider>
         </BrowserRouter>
     </React.StrictMode>
 )

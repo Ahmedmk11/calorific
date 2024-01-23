@@ -72,7 +72,10 @@ export class AuthService {
                         token,
                         this.configService.get<string>('jwtSecret')
                     )
-                    return decoded
+                    const user = await this.userModel.findById(
+                        (decoded as any).userId
+                    )
+                    return user
                 } catch (error) {
                     console.error('Error decoding JWT: ', error)
                     throw new Error('Failed to decode JWT')

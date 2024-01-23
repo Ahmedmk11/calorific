@@ -8,20 +8,21 @@ export enum Sex {
 }
 
 export interface IUser extends Document {
-    username: string
-    name: string
-    email: string
-    password: string
-    birthdate: Date
-    sex: Sex
-    phoneNumber: string
+    username: string // registeration
+    name: string // registeration
+    email: string // registeration
+    password: string // registeration
+    birthdate: Date // registeration
+    sex: Sex // registeration
+    phoneNumber: string // registeration
     comparePassword(enteredPassword: string): Promise<boolean>
-    food_list?: any[]
-    daily_preferences?: { [key: string]: number }
-    weight_target?: number
-    weight_current?: number
-    height?: number
+    food_list?: any[] // anytime
+    daily_preferences?: { [key: string]: number } // after registeration
+    weight_target?: number // after registeration
+    weight_current?: number // after registeration
+    height?: number // after registeration
     health_history?: {
+        // automatically
         date: Date
         weight: number
         body_fats: number
@@ -31,8 +32,9 @@ export interface IUser extends Document {
         pbf: number
         smm: number
     }[]
-    activity_level?: string
+    activity_level?: string // after registeration
     diet_history?: {
+        // automatically
         date: Date
         calories: number
         proteins: number
@@ -40,6 +42,7 @@ export interface IUser extends Document {
         carbs: number
         target: boolean
     }[]
+    isNewUser?: boolean // automatically
 }
 
 const UserSchema: Schema = new Schema({
@@ -73,6 +76,7 @@ const UserSchema: Schema = new Schema({
         default: 'bmr',
     },
     diet_history: { type: Array, default: [] },
+    isNewUser: { type: Boolean, default: true },
 })
 
 UserSchema.pre<IUser>('save', async function (next) {
