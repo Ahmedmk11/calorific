@@ -6,9 +6,11 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import Button from '@mui/material/Button'
 import Badge from '@mui/material/Badge'
+import { useNavigate } from 'react-router-dom'
 
 const Header: React.FC = () => {
     const currentUser = useSelector((state: any) => state.user.currentUser)
+    const navigate = useNavigate()
     const [numberNotifications, setNumberNotifications] = useState(9)
 
     const handleBadgeCount = (count: number) => {
@@ -30,6 +32,9 @@ const Header: React.FC = () => {
                         fontSize='large'
                         style={{
                             cursor: 'pointer',
+                        }}
+                        onClick={() => {
+                            navigate('/profile')
                         }}
                     />
                 </div>
