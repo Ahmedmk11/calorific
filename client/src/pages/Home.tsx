@@ -6,11 +6,11 @@ import {
     StepLabel,
     StepIcon,
     Button,
-    Typography,
     Slider,
     Select,
     MenuItem,
 } from '@mui/material'
+import axiosApi from '../utils/axiosApi'
 
 const Home: React.FC = () => {
     const currentUser = useSelector((state: any) => state.user.currentUser)
@@ -40,10 +40,26 @@ const Home: React.FC = () => {
         extra_active: 'Extra Active',
     }
 
-    const handleNext = () => {
+    const handleNext = async () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1)
         if (activeStep === steps.length - 1) {
-            setNewUser(false)
+            try {
+                await axiosApi.patch('/user/add-user-preferences', {
+                    _id: currentUser._id,
+                    weight,
+                    height,
+                    targetWeight,
+                    targetWater,
+                    activityLevel,
+                    calories,
+                    carbs,
+                    proteins,
+                    fats,
+                })
+                setNewUser(false)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
@@ -119,26 +135,28 @@ const Home: React.FC = () => {
                 <div className='sliders-container'>
                     <h2>What is your current weight?</h2>
                     <Slider
-                        aria-label='Weight'
+                        aria-label='CurrentWeight'
                         defaultValue={80}
                         step={1}
                         color='secondary'
                         valueLabelDisplay='auto'
                         min={20}
                         max={200}
+                        value={weight}
                         onChange={(event: any, value: number | number[]) =>
                             handleWeightChange(event, value)
                         }
                     />
                     <h2>What is your height?</h2>
                     <Slider
-                        aria-label='Height'
+                        aria-label='CurrentHeight'
                         defaultValue={170}
                         step={1}
                         color='secondary'
                         valueLabelDisplay='auto'
                         min={50}
                         max={275}
+                        value={height}
                         onChange={(event: any, value: number | number[]) =>
                             handleHeightChange(event, value)
                         }
@@ -151,26 +169,28 @@ const Home: React.FC = () => {
                 <div className='sliders-container'>
                     <h2>What is your target weight?</h2>
                     <Slider
-                        aria-label='Weight'
+                        aria-label='TargetWeight'
                         defaultValue={80}
                         step={1}
                         color='secondary'
                         valueLabelDisplay='auto'
                         min={20}
                         max={200}
+                        value={targetWeight}
                         onChange={(event: any, value: number | number[]) =>
                             handleTargetWeightChange(event, value)
                         }
                     />
                     <h2>What is your target daily water intake?</h2>
                     <Slider
-                        aria-label='Height'
-                        defaultValue={40}
+                        aria-label='WaterIntake'
+                        defaultValue={4}
                         step={1}
                         color='secondary'
                         valueLabelDisplay='auto'
-                        min={20}
-                        max={100}
+                        min={2}
+                        max={8}
+                        value={targetWater}
                         onChange={(event: any, value: number | number[]) =>
                             handleTargetWaterChange(event, value)
                         }
@@ -206,11 +226,12 @@ const Home: React.FC = () => {
                             <Slider
                                 aria-label='Calories'
                                 defaultValue={2170}
-                                step={1}
+                                step={50}
                                 color='secondary'
                                 valueLabelDisplay='auto'
-                                min={500}
-                                max={8000}
+                                min={700}
+                                max={7000}
+                                value={calories}
                                 onChange={(
                                     event: any,
                                     value: number | number[]
@@ -227,6 +248,7 @@ const Home: React.FC = () => {
                                 valueLabelDisplay='auto'
                                 min={0}
                                 max={600}
+                                value={carbs}
                                 onChange={(
                                     event: any,
                                     value: number | number[]
@@ -236,13 +258,14 @@ const Home: React.FC = () => {
                         <div className='sliders-items'>
                             <h4>Proteins</h4>
                             <Slider
-                                aria-label='Height'
+                                aria-label='Proteins'
                                 defaultValue={180}
                                 step={1}
                                 color='secondary'
                                 valueLabelDisplay='auto'
                                 min={0}
                                 max={600}
+                                value={proteins}
                                 onChange={(
                                     event: any,
                                     value: number | number[]
@@ -259,6 +282,7 @@ const Home: React.FC = () => {
                                 valueLabelDisplay='auto'
                                 min={0}
                                 max={600}
+                                value={fats}
                                 onChange={(
                                     event: any,
                                     value: number | number[]
@@ -326,7 +350,7 @@ const Home: React.FC = () => {
                     </div>
                 </>
             ) : (
-                // Dashboard goes here
+                // TODO: Dashboard goes here
                 <h3>Welcome back!</h3>
             )}
         </div>

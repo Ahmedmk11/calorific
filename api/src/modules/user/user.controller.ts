@@ -1,5 +1,6 @@
-import { Controller, Post, Body, Param } from '@nestjs/common'
+import { Controller, Post, Body, Param, Patch } from '@nestjs/common'
 import { CreateUserDto } from './dto/create-user.dto'
+import { AddUserPreferencesDto } from './dto/add-user-preferences.dto'
 import { UserService } from './user.service'
 
 @Controller('user')
@@ -9,6 +10,13 @@ export class UserController {
     @Post('register-user')
     async createUser(@Body() createUserDto: CreateUserDto) {
         return this.userService.createUser(createUserDto)
+    }
+
+    @Patch('add-user-preferences')
+    async addUserPreferences(
+        @Body() addUserPreferencesDto: AddUserPreferencesDto
+    ) {
+        return this.userService.addUserPreferences(addUserPreferencesDto)
     }
 
     @Post('check-username-taken/:username')
