@@ -1,8 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import axiosApi from '../utils/axiosApi'
-
 import Header from './Header'
 import { useSelector } from 'react-redux'
 
