@@ -33,6 +33,7 @@ export interface IUser extends Document {
         smm: number
     }[]
     activity_level?: string // after registeration
+    water_target?: number // after registeration
     diet_history?: {
         // automatically
         date: Date
@@ -75,6 +76,7 @@ const UserSchema: Schema = new Schema({
         ],
         default: 'bmr',
     },
+    water_target: { type: Number, default: 0 },
     diet_history: { type: Array, default: [] },
     isNewUser: { type: Boolean, default: true },
 })
